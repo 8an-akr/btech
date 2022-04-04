@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let txt1 = "Dog12, CAT3, LiOn7, DolphiN11, fish6";
+      let txt2 = "PIG17, bear29, BiRd8";
+      let txt3 = "SNAKE39, donkey14";
+
+      //נעביר את הטקסט למערך אחד
+      let animalStr = txt1 + "," + txt2 + "," + txt3;
+      let animalArr = animalStr.split(",");
+      //  ['Dog12', ' CAT3', ' LiOn7', ' DolphiN11', ' fish6', 'PIG17', ' bear29', ' BiRd8', 'SNAKE39', ' donkey14']
+
+      //נשתמש בפונקציה orderedArr לסדר אותם לפי שם וקוד
+      let ordered = orderedArr(animalArr);
+
+      //['dog', 12, 'cat', 3, 'lion', 7, 'dolphin', 11, 'fish', 6, 'pig', 17, 'bear', 29, 'bird', 8, 'snake', 39, 'donkey', 14]
+
+      let isSomething = true;
+
+      while (isSomething == true) {
+        let start = Number(
+          prompt(
+            "****Welcome to our zoo database****\n" +
+              "Please choose one of the following options:  \n" +
+              "[1] Search animal by code \n" +
+              "[2] Search animal by name  or part of the name \n" +
+              "[3] Add new animal + code \n" +
+              "[4] Delete animal by code from our database \n" +
+              "[5] 🚪 Exit" +
+              "\n" +
+              "Enjoy :)"
+          )
+        );
+        console.log(start);
+        if (start == 1) {
+          let num = validCode(prompt("enter code:"));
+          let q1 = alert(
+            "Your code is: " +
+              num +
+              " The animal is: " +
+              firstLetterToUpperCase(code(ordered, num))
+          );
+          continue;
+          //פונקציה : code
+        } else if (start == 2) {
+          let names = String(prompt("Enter the animal you want to search: "));
+          let checkName2 = checkName(names, ordered);
+          continue;
+          // //checkName פונקציה :
+        } else if (start == 3) {
+          let newAnimal = prompt("Enter the animal you want to add");
+          let newCode = Number(
+            prompt("Enter the code you want for the animal you added")
+          );
+          let addNew2 = addNew(newAnimal, newCode, ordered);
+          continue;
+          //פונקציה: addNew
+        } else if (start == 4) {
+          let deleteAnimal1 = Number(
+            prompt("Enter the code of the animal you want to delete")
+          );
+          let deleteAnimal2 = deleteAnimal(deleteAnimal1, ordered);
+          continue;
+          //פונקציה: deleteAnimal
+        } else if (start == 5 || start == 0) {
+          alert("You chose to exit, see you again soon");
+          isSomething = false;
+          break;
+        } else {
+          alert("this is not an option");
+          continue;
+        }
+      }
+
+      //functions:
+
+      // הפרדת קודים משם החיה
+      function orderedArr(arr) {
+        let newAnimalArr = [];
+        for (i of animalArr) {
+          let numArr = [];
+          let str = "";
+          for (v = 0; v < i.length; v++) {
+            if (i[v] >= 0) {
+              numArr = numArr + i[v];
+            } else {
+              str = str + i[v].toLowerCase();
+            }
+          }
+          newAnimalArr.push(str);
+          newAnimalArr.push(Number(numArr));
+        }
+        return newAnimalArr;
+      }
+
+      //מציאת שם החיה בעזרת הקוד
+      function code(arr, num) {
+        for (i in arr) {
+          if (arr[i] == num) {
+            return arr[i - 1];
+          }
+        }
+        return "is not found in the database";
+      }
+
+      //חיפוש חיה לפי השם שלה או חלק משמה
+      function checkName(n1, arr) {
+        let incArr = [];
+        for (ind = 0; ind < arr.length; ind += 2) {
+          n1 = n1.toLowerCase();
+          if (arr[ind].includes(n1)) {
+            incArr.unshift(arr[ind], arr[ind + 1]);
+          }
+        }
+        alert(" your search is: " + n1);
+        for (i = 0; i < incArr.length; i += 2) {
+          alert(
+            "Animal code: " +
+              incArr[i + 1] +
+              "\n" +
+              "Animal name: " +
+              firstLetterToUpperCase(incArr[i])
+          );
+        }
+        if (incArr.length == 0) {
+          alert("Sorry, your animal is not in our data base");
+        }
+      }
+
+      //הוספת חיה חדשה עם קוד חדש
+      function addNew(animal, code, arr) {
+        code = validCode(code);
+        for (i = 1; i < arr.length; i += 2) {
+          if (arr[i] == code) {
+            alert("This code is already taken");
+            addNew(
+              animal,
+              validCode(
+                prompt("Enter the code you want for the animal you added")
+              ),
+              arr
+            );
+            return;
+          }
+        }
+        for (ind = 0; ind < arr.length; ind += 2) {
+          if (arr[ind] == animal.toLowerCase()) {
+            alert("This animal already exists");
+            addNew(
+              prompt("Enter the name of  the animal you want to add"),
+              code,
+              arr
+            );
+            return;
+          }
+        }
+        arr.push(animal.toLowerCase());
+        arr.push(code);
+        alert(
+          "Your animal: " +
+            firstLetterToUpperCase(animal) +
+            "\n" +
+            "Code: " +
+            code +
+            " was added"
+        );
+        return arr;
+      }
+
+      //החלפת האות הראשונה לאות גדולה
+      function firstLetterToUpperCase(word) {
+        return word.replace(word[0], word[0].toUpperCase());
+      }
+
+      //בדיקה שקוד הוא רק מספרים
+      function validCode(code) {
+        while (isNaN(code)) {
+          code = prompt("Please enter a valid code (only numbers)");
+        }
+        return code;
+      }
+
+      //מחיקת חיה מהמערך
+      function deleteAnimal(code, arr) {
+        for (i = 1; i <= arr.length; i += 2) {
+          if (code == arr[i]) {
+            alert(
+              "you deleted the animal with the code " +
+                code +
+                "\n" +
+                "the animal was: " +
+                firstLetterToUpperCase(arr[i - 1])
+            );
+            arr.splice(i - 1, 2);
+            return arr;
+          }
+        }
+        alert("this code not exist");
+        return;
+      }
+
+      // // //==================================== Eitan ================================================================
+
+      // function splitAniCode(zooArray, method) {
+      //     let animals = [],
+      //         codes = [];
+      //     zooArray = zooArray.toLowerCase().split(`, `)
+      //     for (i = 0; i < zooArray.length; i++) {
+      //         zooAnimals = (zooArray[i].slice(0, zooArray[i].search(/\d/)));
+      //         animalCodes = zooArray[i].replace(zooAnimals, '');
+      //         codes.push(animalCodes)
+      //         animals.push(zooAnimals)
+      //     }
+      //     if (method == `code`) {
+      //         return codes
+      //     } else {
+      //         return animals
+      //     }
+      // }
+
+      // function search(array, str) {
+      //     for (i = 0; i < array.length; i++) {
+      //         if (codeArr[i] == str) {
+      //             return i
+      //         }
+      //     }
+      // }
+
+      // function searchCode(str) {
+      //     while (isNaN(search(codeArr, str))) {
+      //         alert(`code not found`)
+      //         str = prompt(`enter animal code`)
+      //     }
+      //     return alert(`${animalArr[search(codeArr, str)].charAt(0).toUpperCase() + animalArr[search(codeArr, str)].substring(1)} || ${codeArr[search(codeArr, str)]}`)
+
+      // }
+
+      // function searchAnimal(str) {
+      //     let searchByName = `search input: ${str}\nthe following animals were found:`
+      //     for (i = 0; i < animalArr.length; i++) {
+      //         if (animalArr[i].search(str) != -1) {
+      //             searchByName += `\nAnimal name: ${animalArr[i].charAt(0).toUpperCase() + animalArr[i].substring(1)}\nAnimal code: ${codeArr[i]}\n`
+      //         }
+      //     }
+      //     return searchByName
+      // }
+
+      // function addAnimal(name, code) {
+      //     while (!isNaN(search(codeArr, newCode))) {
+      //         alert(`code already taken`)
+      //         newCode = Number(prompt(`enter new code`))
+      //     }
+      //     animalArr.push(newAnimal.toLowerCase())
+      //     codeArr.push(String(newCode))
+      // }
+
+      // function deleteAnimal(str) {
+      //     while (isNaN(search(codeArr, str))) {
+      //         str = prompt(`this code is not being used enter existing animal code`)
+      //     }
+      //     let i = search(codeArr, str)
+      //     animalArr.splice(i, 1)
+      //     codeArr.splice(i, 1)
+
+      // }
+
+      //// // short
+
+      //   const txt1 = "Dog12, CAT3, LiOn7, DolphiN11, fish6 ";
+      //   const txt2 = "PIG17, bear29, BiRd8, SNAKE39, donkey14";
+      //   let animalArr = [],
+      //     codeArr = [],
+      //     options;
+      //   splitAniCode(txt1);
+      //   splitAniCode(txt2);
+      //   console.log(animalArr);
+      //   console.log(codeArr);
+
+      //   function splitAniCode(zooArray) {
+      //     zooArray = zooArray.toLowerCase().split(`, `);
+      //     for (i = 0; i < zooArray.length; i++) {
+      //       zooAnimals = zooArray[i].slice(0, zooArray[i].search(/\d/));
+      //       animalCodes = zooArray[i].replace(zooAnimals, "");
+      //       animalArr.push(zooAnimals);
+      //       codeArr.push(animalCodes);
+      //     }
+      //   }
+
+      //   function search(array, str) {
+      //     for (i = 0; i < array.length; i++) {
+      //       if (codeArr[i] == str) {
+      //         return i;
+      //       }
+      //     }
+      //   }
+
+      //   function searchCode(str) {
+      //     while (isNaN(search(codeArr, str))) {
+      //       alert(`code not found`);
+      //       str = prompt(`enter animal code`);
+      //     }
+      //     return alert(
+      //       `${
+      //         animalArr[search(codeArr, str)].charAt(0).toUpperCase() +
+      //         animalArr[search(codeArr, str)].substring(1)
+      //       } || ${codeArr[search(codeArr, str)]}`
+      //     );
+      //   }
+
+      //   function searchAnimal(str) {
+      //     let searchByName = `search input: ${str}\nthe following animals were found:`;
+      //     for (i = 0; i < animalArr.length; i++) {
+      //       if (animalArr[i].search(str) != -1) {
+      //         searchByName += `\nAnimal name: ${
+      //           animalArr[i].charAt(0).toUpperCase() + animalArr[i].substring(1)
+      //         }\nAnimal code: ${codeArr[i]}\n`;
+      //       }
+      //     }
+      //     return searchByName;
+      //   }
+
+      //   function addAnimal(name, code) {
+      //     while (!isNaN(search(codeArr, newCode))) {
+      //       alert(`code already taken`);
+      //       newCode = Number(prompt(`enter new code`));
+      //     }
+      //     animalArr.push(newAnimal.toLowerCase());
+      //     codeArr.push(String(newCode));
+      //   }
+
+      //   function deleteAnimal(str) {
+      //     while (isNaN(search(codeArr, str))) {
+      //       str = prompt(
+      //         `this code is not being used enter existing animal code`
+      //       );
+      //     }
+      //     let i = search(codeArr, str);
+      //     animalArr.splice(i, 1);
+      //     codeArr.splice(i, 1);
+      //   }
+    </script>
+  </body>
+</html>

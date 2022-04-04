@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //         // array.shift()
+
+      // let arr = [0,1,2,3,4,5]
+      // let arr1 = []
+      // let i = 0
+
+      // for (i=0 ; i<arr.length-1 ; i++){
+      // arr1[i]=arr[i+1]
+
+      // }
+      // console.log (arr[0])
+      // arr=arr1
+
+      // //     array.pop()
+
+      // let arr = [0,1,2,3,4,5]
+      // let arr1 = []
+      // let i = 0
+
+      // for (i=0 ; i<arr.length-1 ; i++){
+      // arr1[i]=arr[i]
+
+      // }
+
+      // console.log (arr[arr.length-1])
+      // arr=arr1
+
+      // // array.unshift
+
+      // let arr = [0,1,2,3,4,5]
+      // let arr1 = []
+      // let i = 0
+      // let str = prompt ("Enter the values you want to add, separated by "," ")
+
+      // str=str.split(",")
+
+      // for(i in str) {
+
+      //     arr1[i]=str[i]
+      // }
+
+      // for (i in arr){
+      // arr1[arr1.length]=arr[i]
+
+      // }
+
+      // console.log(arr1.length);
+      // arr=arr1
+
+      // // array.push
+
+      // let arr = [0,1,2,3,4,5]
+      // let arr1 = []
+      // let i = 0
+      // let str = prompt ("Enter the values you want to add, separated by , ")
+
+      // str=str.split(",")
+
+      // for(i in arr) {
+
+      //     arr1[i]=arr[i]
+      // }
+
+      // for (i in str){
+      // arr1[arr1.length]=str[i]
+
+      // }
+
+      // console.log(arr1.length);
+      // arr=arr1
+
+      // // aray.slice
+
+      // let arr = [0,1,2,3,4,5]
+      // let arr1 = []
+      // let i = 0
+      // let num = prompt ("Enter number to start")
+      // let num1 = prompt ("Enter number to end")
+
+      // for (i=0 ; i<Number(num1)-Number(num) ; i++){
+      // arr1[i]=arr[Number(num)+i]
+
+      // }
+      // console.log(arr1);
+
+      // if (!(Number(num))){
+      //     console.log(arr);
+
+      // }
+
+      // else if (!(Number(num1))){
+      //     for (i=0 ; i<Number(arr.length)-Number(num) ; i++){
+      // arr1[i]=arr[Number(num)+i]
+
+      // }
+      // console.log(arr1);
+
+      // }
+
+      // // // array.join
+
+      // let arr = [0,1,2,3,4,5]
+      // let a = prompt("enter something:")
+      // let str = ""
+      // let i=0
+
+      // if (!(a)){
+
+      // str+=arr[i]
+      // for (i=1 ; i<arr.length ; i++){
+
+      // str+=","+arr[i]
+      // }
+      // console.log(str);
+      // }
+
+      // else{
+
+      // str+=arr[i]
+      //     for (i=1 ; i<arr.length ; i++){
+
+      // str+=a+arr[i]
+
+      // }
+      // console.log(str);
+      // }
+
+      // arr.splice
+
+      let arr = [0, 1, 2, 3, 4, 5];
+      let arr1 = [];
+      let arr2 = [];
+      let i = 0;
+      let num = prompt("Enter number to start");
+      // let num = prompt("Enter number to start");
+      let num1 = prompt("Enter number to delete");
+      // let num1 = prompt("Enter number to delete");
+      let num2 = prompt("Enter something...");
+      // let num2 = prompt("Enter something...");
+
+      if ((Number(num) || num == 0) && !Number(num1)) {
+        for (i = 0; i < Number(arr.length) - Number(num); i++) {
+          arr1[i] = arr[Number(num) + i];
+        }
+        for (i = 0; i < num; i++) {
+          arr2[i] = arr[i];
+        }
+        arr = arr2;
+        console.log(arr1);
+      } else if ((Number(num) || num == 0) && Number(num1) && !num2) {
+        for (i = 0; i < num1; i++) {
+          arr1[i] = arr[Number(num) + i];
+        }
+
+        for (i = 0; i < num; i++) {
+          arr2[i] = arr[i];
+        }
+        for (i; i < Number(arr.length) - Number(num1); i++) {
+          arr2[i] = arr[Number(i) + Number(num1)];
+        }
+        arr = arr2;
+        console.log(arr1);
+      } else if ((Number(num) || num == 0) && Number(num1) && num2) {
+        for (i = 0; i < num1; i++) {
+          arr1[i] = arr[Number(num) + i];
+        }
+
+        for (i = 0; i < num; i++) {
+          arr2[i] = arr[i];
+        }
+
+        if ((i = num)) {
+          arr2[i] = num2;
+          i++;
+        }
+
+        for (i; i < Number(arr.length) - Number(num1) + 1; i++) {
+          arr2[i] = arr[Number(i) + Number(num1) - 1];
+        }
+        arr = arr2;
+        console.log(arr1);
+      } else {
+        console.log(arr1);
+      }
+    </script>
+  </body>
+</html>

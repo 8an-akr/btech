@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // ------------------------------------------------YOAV------------------------------------------
+      // let myStr = "", // "user input"
+      //   newStr = "", // "method output"
+      //   tmpStr = ""; // helper
+
+      // // declare and initialize arrays
+      // let myArr = [], // "user input"
+      //   newArr = [], // "method output"
+      //   tmpArr = []; // helper
+
+      // // declare and initialize counters
+      // let l = 0, // length
+      //   i = 0, // index
+      //   s = 0, // start
+      //   e = 0; // end
+
+      // ////////////////////////////////////////////////////
+      // // String - indexOf; searches for a given substring.
+      // // idea:
+      // // Get a given string and an index.
+      // // Get the first character of the substring and find for a match in the main string.
+      // // Once a match is found, save this index and continue comparing all other character from this index onward.
+      // // If the substring does not match, continue searching for a new match from previous location
+      // // If the substring matches, return this index.
+      // myStr = "     Hello    World     !!     ";
+      // tmpStr = "lo";
+      // s = 2;
+      // matchFound = false;
+
+      // indexOfCondition = true;
+      // indexOfCondition = myStr.length && tmpStr.length && indexOfCondition; // Either of the strings is empty
+      // indexOfCondition = myStr.length - s > tmpStr.length && indexOfCondition; // substring longer than remaining calling string
+
+      // if (indexOfCondition) {
+      //   for (s; s < myStr.length; s++) {
+      //     for (i = 0; myStr[s + i] == tmpStr[i]; i++) {}
+      //     if (i == tmpStr.length) {
+      //       matchFound = true;
+      //       break;
+      //     }
+      //   }
+      // } else {
+      //   s = -1;
+      // }
+
+      // console.log(s);
+
+      // ////////////////////////////////////////////////////
+      // // String - includes; searches for a given substring.
+      // // idea:
+      // // Same as described on "indexOf" above, but returns a boolean value rather than an indexx number.
+      // myStr = "     Hello    World     !!     ";
+      // tmpStr = "lo";
+      // s = 2;
+      // matchFound = false;
+
+      // indexOfCondition = true;
+      // indexOfCondition = myStr.length && tmpStr.length && indexOfCondition; // Either of the strings is empty
+      // indexOfCondition = myStr.length - s > tmpStr.length && indexOfCondition; // substring longer than remaining calling string
+
+      // if (indexOfCondition) {
+      //   for (s; s < myStr.length; s++) {
+      //     for (i = 0; myStr[s + i] == tmpStr[i]; i++) {}
+      //     if (i == tmpStr.length) {
+      //       matchFound = true;
+      //       break;
+      //     }
+      //   }
+      // }
+
+      // console.log(matchFound);
+
+      // ////////////////////////////////////////////////////
+      // // String - trim; removes whitespaces from both end and beginning of the string.
+      // // idea:
+      // // Start seaching from the beginning for a non-whitespaces char. Once found, save its location.
+      // // Start searching from the end for a non-whitespaces char. Once found, save its location.
+      // // Create a new string based on these indexes.
+      // myStr = "     Hello    World     !!     ";
+      // newStr = "";
+      // start = -1;
+      // end = myStr.length;
+
+      // while (myStr[++s] == " ") {}
+
+      // while (myStr[--e] == " ") {}
+
+      // for (i = s; i <= e; i++) {
+      //   newStr += myStr[i];
+      // }
+
+      // console.log(newStr);
+
+      // ////////////////////////////////////////////////////
+      // // String - replaceAll; searches for a given substring and replaces it with another substring
+      // // idea:
+      // // Making use of both "includes" and "indexOf"
+      // // Get a search string and a replacement string
+      // // Get the first character of the substring and find for a match in the main string.
+      // // Once a match is found, save this index and continue comparing all other character from this index onward.
+      // // If the substring does not match, continue searching for a new match from previous location
+      // // If the substring matches, return this index.
+      // myStr = "     Hello    World     !!     ";
+      // tmpStr = "l";
+      // newStr = "?";
+      // s = 0;
+
+      // matchFound = true;
+
+      // while (matchFound) {
+      //   matchFound = false;
+      //   indexOfCondition = true;
+      //   indexOfCondition = myStr.length && tmpStr.length && indexOfCondition; // Either of the strings is empty
+      //   indexOfCondition = myStr.length - s > tmpStr.length && indexOfCondition; // substring longer than remaining calling string
+
+      //   if (indexOfCondition) {
+      //     for (s; s < myStr.length; s++) {
+      //       for (i = 0; myStr[s + i] == tmpStr[i]; i++) {}
+      //       if (i == tmpStr.length) {
+      //         matchFound = true;
+      //         let strBgn = "",
+      //           strEnd = "";
+      //         for (let j = 0; j < s; j++) {
+      //           strBgn += myStr[j];
+      //         }
+      //         for (let j = s + i; j < myStr.length; j++) {
+      //           strEnd += myStr[j];
+      //         }
+      //         myStr = strBgn + newStr + strEnd;
+      //         break;
+      //       }
+      //     }
+      //   } else {
+      //     s = -1;
+      //   }
+      // }
+
+      // console.log(myStr);
+
+      // ////////////////////////////////////////////////////
+      // // Array - pop; removes the last element from an array
+      // // idea:
+      // // Get given array's length
+      // // Get last element's location (usually [].length-1)
+      // // Copy last element to a cell
+      // // Copy the rest of the elements to a new array
+      // // Name the new array after the given array.
+      // // Print the removed element
+      // myArr = [0, 1, 2, 3, 4, "5", "6", true, false, "9"];
+      // newArr = [];
+
+      // s = 0;
+      // l = myArr.length;
+
+      // if (l != 0) {
+      //   tmpArr = myArr[--l];
+
+      //   for (s; s < l; s++) {
+      //     newArr[s] = myArr[s];
+      //   }
+
+      //   myArr = newArr;
+      // } else {
+      //   tempArr = undefined;
+      // }
+
+      // console.log(tmpArr);
+
+      // ////////////////////////////////////////////////////
+      // // Array - shift; removes the first element from an array
+      // // idea:
+      // // Get given array's length
+      // // Get first element's location (usually 0...)
+      // // Copy first element to a cell
+      // // Copy the rest of the elements to a new array
+      // // Name the new array after the given array.
+      // // Print the removed element
+      // myArr = [0, 1, 2, 3, 4, "5", "6", true, false, "9"];
+      // newArr = [];
+
+      // s = 0;
+      // l = myArr.length;
+
+      // if (l != 0) {
+      //   tmpArr = myArr[s++];
+
+      //   for (s; s < l; s++) {
+      //     newArr[s - 1] = myArr[s];
+      //   }
+
+      //   myArr = newArr;
+      // } else {
+      //   tempArr = undefined;
+      // }
+
+      // console.log(tmpArr);
+
+      // ////////////////////////////////////////////////////
+      // // Array - unshift; adds elements to the beginning of an array
+      // // idea:
+      // // Get new elements and put then in a temp. array.
+      // // Get both given and temp. arrays' length.
+      // // Create a new array and copy items from (1) temp. array and then (2) given array.
+      // // Name the new array after the given array.
+      // // Print the new array's length.
+      // myArr = [0, 1, 2, 3, 4];
+      // tmpArr = ["5", "6", true, false, "9"];
+      // newArr = [];
+
+      // s = 0;
+      // l = tmpArr.length;
+      // e = myArr.length;
+
+      // for (s; s < l; s++) {
+      //   newArr[s] = tmpArr[s];
+      // }
+
+      // s = 0;
+
+      // for (s; s < e; s++) {
+      //   newArr[s + l] = myArr[s];
+      // }
+
+      // myArr = newArr;
+
+      // console.log(myArr.length);
+
+      // ////////////////////////////////////////////////////
+      // // Array - push; adds elements to the end of an array
+      // // idea:
+      // // Get new elements and put then in a temp. array.
+      // // Get both given and temp. arrays' length.
+      // // Create a new array and copy items from (1) temp. array and then (2) given array.
+      // // Name the new array after the given array.
+      // // Print the new array's length.
+      // myArr = [0, 1, 2, 3, 4];
+      // tmpArr = ["5", "6", true, false, "9"];
+      // newArr = [];
+
+      // s = 0;
+      // l = myArr.length;
+      // e = tmpArr.length;
+
+      // for (s; s < l; s++) {
+      //   newArr[s] = myArr[s];
+      // }
+
+      // s = 0;
+
+      // for (s; s < e; s++) {
+      //   newArr[s + l] = tmpArr[s];
+      // }
+
+      // myArr = newArr;
+
+      // console.log(myArr.length);
+
+      // ////////////////////////////////////////////////////
+      // // Array - slice; creates an array based off of a given array, start and end points
+      // // idea:
+      // // Get a given array, a starting point and an end point.
+      // // Get given array's length.
+      // // Normalize start and end values
+      // // Make sure start and end values are valid.
+      // // Create a new array and copy items between boundaries from given array.
+      // // In case of an invalid value, set te new array to an empty one.
+      // // Print the new array
+      // myArr = [0, 1, 2, 3, 4, "5", "6", true, false, "9"];
+      // newArr = [];
+
+      // s = -7;
+      // e = -2;
+      // l = myArr.length;
+
+      // if (s < 0) {
+      //   s = l + s >= 0 ? l + s : 0;
+      // }
+      // if (e < 0) {
+      //   e = l + e >= 0 ? l + e : 0;
+      // }
+      // if (e > l) {
+      //   e = l;
+      // }
+
+      // let joinCondition = true;
+      // joinCondition = s < e && joinCondition; // start point is smaller than end point
+      // joinCondition = s < l && joinCondition; // start point is smaller than length
+
+      // if (joinCondition) {
+      //   for (i = 0; s < e; s++) {
+      //     newArr[i++] = myArr[s];
+      //   }
+      // }
+
+      // console.log(newArr);
+
+      // // Array - splice; remove or replace existing elements and add new elements in place
+      // // idea:
+      // // Get given array's length, get start index, get num of elements to delete get elements to add.
+      // // Create a new array and copy elements from array's start to start point
+      // // Add given elements to new array's end
+      // // increment index X time (as the number of removed elements)
+      // // Copy elements starting from index to end or array
+      // // Print the new array
+
+      // // CODE WAS NOT IMPLEMENTED
+
+      // ////////////////////////////////////////////////////
+      // // Array - join; creates a string containing array's elements concatenated and separated by a separator (default is ",")
+      // // idea:
+      // // Get a given array and a separator.
+      // // Get given array's length.
+      // // Create a new string and copy elements from array.
+      // // for each copied element, add a separator, excep for the last one
+      // // In case of an empty array, create an empty string
+      // // Print the new string
+      // myArr = [0, 1, 2, 3, 4, "5", "6", true, false, "9"];
+      // tmpStr = "$";
+      // newStr = "";
+
+      // s = 0;
+      // l = myArr.length;
+
+      // if (l != 0) {
+      //   for (s; s < l - 1; s++) {
+      //     newStr += myArr[s] + tmpStr;
+      //   }
+      //   newStr += myArr[l - 1];
+      // }
+
+      // console.log(newStr);
+
+      // /////////////// ==========================NADAV============================
+
+      // //////// The indexOf() method returns the position of the first occurrence of a value in a string.
+      // //////// The indexOf() method returns -1 if the value is not found.
+      // //////// The indexOf() method is case sensitive.
+      // //////// find "test" in String
+      // //////// give location it was found
+
+      // let txt = "This is a t4est t2est t8est string tes",
+      //   key = "test",
+      //   result = -1;
+      // for (let location = 0; location < txt.length; location++) {
+      //   let n = 0;
+      //   for (; n < key.length; n++) {
+      //     if (txt[location + n] != key[n]) break;
+      //   }
+      //   if (n == key.length) {
+      //     result = location;
+      //     break;
+      //   }
+      // }
+      // alert(result);
+
+      // // ///////////////The splice() method adds and/or removes array elements.
+      // // ///////////////The splice() method overwrites the original array.
+
+      // let arr = [0, 11, 22, 33, 44, 55, 66, 77],
+      //   pos = 2,
+      //   del = 0,
+      //   els = ["batman", "hulk"];
+      // (startC = arr.length - (pos + del)), (tempArr = []);
+      // for (n = 0; n < pos; n++) {
+      //   tempArr[n] = arr[n];
+      // }
+      // for (n = 0; n < els.length; n++) {
+      //   tempArr[pos + n] = els[n];
+      // }
+      // for (n = 0, tempL = tempArr.length; n < startC; n++) {
+      //   tempArr[tempL + n] = arr[pos + del + n];
+      // }
+      // arr = tempArr;
+
+      // // /////////////////=====================================MILKA====================================
+
+      // //IndexOf
+
+      // let str = "hi my na bame is name",
+      //   chart = "name";
+      // let index = 0,
+      //   index1 = 0;
+      // for (index = 0; index < str.length && index1 < chart.length; index++) {
+      //   if (str[index] == chart[index1]) {
+      //     index1++;
+      //   } else {
+      //     index1 = 0;
+      //   }
+      // }
+      // if (index1 == chart.length) {
+      //   console.log(index - chart.length);
+      // } else {
+      //   console.log(-1);
+      // }
+
+      // // ////////////=================================REUT=====================================
+
+      // //       //replaceAll
+      // ///// מחליף בטקסט  את כל הסטרינג המסויים בסטרינג אחר
+      // //   ///    //לא משנה את הטקסט המקורי
+      // let txt = "reut ezra";
+      // let txt2 = txt.replaceAll("e", "z");
+      // txt2 = "rzut zzra";
+
+      // let x = "e",
+      //   y = "z",
+      //   txt2 = "";
+
+      // for (i = 0; i < txt.length; i++) {
+      //   if (txt[i] != x) {
+      //     txt2 = txt2 + txt[i];
+      //   }
+      //   if (txt[i] == x) {
+      //     txt2 = txt2 + y;
+      //   }
+      // }
+      // console.log(txt2);
+
+      // // =====================================ITAY=========================
+
+      // let str = prompt("enter a string"),
+      //   arr = [],
+      //   i3 = -1,
+      //   word = prompt("enter a word to replace"),
+      //   replacement = prompt("enter a new word"),
+      //   n = "",
+      //   newString = "",
+      //   wordCounter = 1,
+      //   x = "";
+      // for (n of str) {
+      //   if (n == " ") {
+      //     wordCounter++;
+      //   }
+      // }
+      // for (i2 = 0; i2 < wordCounter; i2++) {
+      //   i3++;
+      //   x = "";
+      //   while (str[i3] != " " && [i3] < str.length) {
+      //     x += str[i3];
+      //     i3++;
+      //   }
+      //   arr[i2] = x;
+      // }
+      // for (n of arr) {
+      //   if (n == word) {
+      //     newString += replacement + " ";
+      //   } else {
+      //     newString += n + " ";
+      //   }
+      // }
+      // console.log(newString);
+
+      // // ===========================YISHAI============================================
+
+      // //replaceAll
+      // let str = "todayhappyday";
+      // let start = 0;
+      // let find = false;
+      // let str2 = "y";
+      // let str_replace = "dd";
+      // let str_result = "";
+      // let find_str2 = true;
+      // let start2 = 0;
+      // while (start <= str.length - str2.length) {
+      //   while (find_str2 && start2 < str2.length) {
+      //     if (str2[start2] == str[start + start2]) find_str2;
+      //     else find_str2 = false;
+      //     start2++;
+      //   }
+      //   if (find_str2 == true) {
+      //     str_result = str_result + str_replace;
+      //     start += str2.length;
+      //     start2 = 0;
+      //   } else {
+      //     str_result = str_result + str[start];
+      //     start2 = 0;
+      //     start++;
+      //     find_str2 = true;
+      //   }
+      // }
+      // console.log(str_result);
+    </script>
+  </body>
+</html>

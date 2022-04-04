@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. calcSum  - recursive, sum whole numbers to zero.
+      // Works with both positive and negative numbers.
+      calcSum(3);
+      function calcSum(num) {
+        console.log(num);
+        if (num == 0) {
+          // Stop condition - reached 0
+          return 0;
+        } else {
+          return num + (num > 0 ? calcSum(--num) : calcSum(++num)); // Positive num: decrease by 1, Negative num: increase by 1.
+        }
+      }
+    </script>
+  </body>
+</html>
