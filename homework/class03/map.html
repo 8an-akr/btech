@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let numbers = [23, 5, 2, 76, 9, 65, 43, 90, 3];
+
+      // 1. כתבו קוד שמחזיר מערך מעודכן של כל המספרים בתוספת 10% (עגלו את המספרים)
+      //   numbers = numbers.map((number) => Math.round(number * 1.1));
+
+      // 2. כתבו פונקציה שמקבלת מערך ומדפיסה את כל המספרים בצירוף המילה price , לדוגמא
+      // price: 23
+      // price: 5
+
+      //   function price(numbers) {
+      //     numbers.map((v) => console.log(`price: ${v}`));
+      //   }
+
+      // 3. פונקציה שמקבלת מערך ומחזירה מערך חדש כאשר כל תא יהיה עם אותו ערך אלא אם המספר זוגי ואז מכפילה אותם ב3.
+
+      // function duble(arr, newarr) {
+      //   newarr = arr.map((v) => (v % 2 == 0 ? v * 3 : v));
+      //   return newarr;
+      // }
+
+      // 4.  פונקציה שמקבלת מערך של מספרים ואם הספרה השנייה שלהם היא זוגית היא מוסיפה להם מספר רנדומלי
+      //   function rando(arr){
+      //       arr=arr.map(v=>(String(v)[1]%2==0) ?
+      //           Number(String(v).concat(Math.round(Math.random()*10))): v)
+      //       return arr
+      //   }
+
+      //   let result4=arr.map((value)=>{
+      //           let a=value%10;
+      //           if(String(value).length>1&&a%2==0){
+      //               return Number(`${value}${Math.floor(Math.random()*10)}`);
+      //           }
+      //           else{
+      //               return value;
+      //           }
+      //       });
+      //       console.log(result4)
+
+      ///////////////////////////////////////////////////////////////////////
+      let names = ["ercy", "michael", "netanel", "meir", "trol", "avi", "nati"];
+
+      // 4. פונקציה שמוסיפה לכל השמות שקצרים מארבעה אותיות עוד שם דיפולטיבי לדוגמא "avi meir"
+      //   function randname(arr){
+      //       arr =arr.map(v=>((v.length<4)?v.concat(" yosef"):v))
+      //       return arr
+      //   }
+
+      // 5. פונקציה שמוסיפה לכל השמות שהאינדקס שלהם הוא זוגי את השם "kobi"
+
+      //   function zooginame(arr){
+      //       arr =arr.map((v,i)=>((i%2==0) ? v.concat(" kobi") : v))
+      //       return arr
+      //   }
+
+      // 6. פונקציה שחותכת את האותיות e r c מתוך השמות במערך
+      //  ומחליפה את האות y
+      // ב- p
+
+      function changename(arr) {
+        arr = arr.map((v) => v.replace(/[e,r,c]/gi, "").replace(/y/gi, "p"));
+        return arr;
+      }
+      console.log(changename(names));
+    </script>
+  </body>
+</html>

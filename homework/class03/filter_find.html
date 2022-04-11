@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let fruits = [
+        "Banana",
+        "Peach",
+        "Pineapple",
+        "Apple",
+        "Grapes",
+        "Fig",
+        "Plum",
+        "Kiwi",
+        "Coconut",
+        "Papaya",
+      ];
+
+      // 1: log the fruits with more than 6 letters
+      // const result = fruits.filter((value) => value.length >= 6);
+      // if (result.length == 0) {
+      //   console.log("no result");
+      // } else {
+      //   console.log(result);
+      // }
+
+      //////////////////////////////////////////////////////////
+
+      //   let result = fruits.filter((value) => value.length >= 6);
+      //   console.log(print(result));
+
+      function print(arr) {
+        let ans = "--- Result --- ";
+        if (arr.length == 0) {
+          return (ans = "---No Result---");
+        }
+        for (i in arr) {
+          ans += `
+      ${Number(i) + 1}. ${arr[i]}`;
+        }
+        return ans + "\n -------------";
+      }
+
+      ///////////////////////////////////////////////////////////
+
+      // 2. קלטו אות והדפיסו את כל הפירות שמתחילות באות שנקלטה , כתבו לפחות 2 אפשרויות של בדיקה
+      //   let letter = prompt('choose a letter')
+      //   let newlist = fruits.filter((fruit) => fruit[0].toLowerCase() == letter.toLowerCase())
+      //   console.log(print(newlist))
+
+      //   let newlist = list.filter((fruit) => fruit[0].toLowerCase().includes(letter.toLowerCase()))
+      //   console.log(print(newlist))
+
+      ///////////////////////////////////////////////////////////////
+
+      //// 3,4,5,6 print all words with letters at least twice
+      //   let letter = prompt("choose letter");
+      //   let r = fruits.filter((fruit) => letterTwice(fruit, letter));
+      //   print1(r);
+
+      //   function print1(arr) {
+      //     if (arr.length > 0) {
+      //       console.log("---result---");
+      //       for (let i = 0; i < arr.length; i++) {
+      //         console.log(` ${i + 1}.${arr[i]}`);
+      //       }
+      //     } else {
+      //       console.log("---no result---");
+      //     }
+      //   }
+
+      //   function letterTwice(value, searchLetter) {
+      //     fruits.filter(
+      //       (fruit) =>
+      //         fruit.match(/p/gi) != null && fruit.match(/p/gi).length >= 2
+      //     );
+      //   }
+
+      // letterTwice(prompt("choose letter"))
+
+      //   function letterTwice(arr, searchLetter) {
+      //     arr.filter((fruit) =>
+      //       fruit.includes(searchLetter, fruit.indexOf(searchLetter) + 1)
+      //     );
+      //   }
+
+      //   function letterTwice(value, searchLetter) {
+      //     fruits.filter((fruit) => fruit.toLowerCase().split("p").length > 2);
+      //   }
+
+      //   function letterTwice(value, searchLetter) {
+      //     let sum = 0;
+      //     for (let i = 0; i < value.length; i++) {
+      //       if (
+      //         value[i].toLowerCase().includes(searchLetter) ||
+      //         value[i].toUpperCase().includes(searchLetter)
+      //       ) {
+      //         sum++;
+      //       }
+      //     }
+      //     if (sum >= 2) {
+      //       return true;
+      //     }
+      //   }
+
+      /////////////////////////////////////////
+
+      // 7 print all odd indexed fruits by alphabet
+      //   console.log(print(fruits.filter((v, i) => i % 2 == 1).sort()));
+
+      ///////////////////////////// FIND ///////////////////////////////
+
+      // 8: e or m last letter and between 3-5
+      //   fruits.find(v => (v.includes("e",(v.length -1)) || v.includes("m",(v.length -1))) && v.length >= 3 && v.length <= 5)
+
+      //9: has c twice
+
+      // function twoletters(value, char) {
+      //   if (value.includes(char)) {
+      //     if (value.includes(char, value.indexOf(char) + 1)) {
+      //       return value;
+      //     }
+      //   }
+      // }
+
+      // char = "c";
+      // fruits.find((v) => twoletters(v.toLowerCase(), char));
+
+      // 10. first word with last words last letter
+      fruits.find(
+        (v, i, arr) =>
+          arr[arr.length - 1]
+            .slice(arr[arr.length - 1].length - 1)
+            .toLowerCase() == arr[i].slice(0, 1).toLowerCase()
+      );
+
+      fruits.find(
+        (v, i, arr) =>
+          v[0].toLowerCase() ==
+          arr[arr.length - 1][arr[arr.length - 1].length - 1].toLowerCase()
+      );
+    </script>
+  </body>
+</html>

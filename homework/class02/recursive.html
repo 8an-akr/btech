@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. calcSum  - recursive, sum whole numbers to zero.
+      // Works with both positive and negative numbers.
+      calcSum(3);
+      function calcSum(num) {
+        console.log(num);
+        if (num == 0) {
+          // Stop condition - reached 0
+          return 0;
+        } else {
+          return num + (num > 0 ? calcSum(--num) : calcSum(++num)); // Positive num: decrease by 1, Negative num: increase by 1.
+        }
+      }
+
+      // reverseString - recursive, reverse a string
+      function reverseString(str, index = str.length) {
+        // index set to string's end.
+        if (index == 0) {
+          // Stop condition - either string is empty or index reached 0.
+          return "";
+        } else {
+          return str[--index] + reverseString(str, index); // concatenate char with the previous one, while index sent as a param
+        }
+      }
+
+      // calcArray - recursive, sum all values in a given array including its sub-arrays\
+      // [1,2,[2,3], 4]
+      function calcArray(arr, index = 0) {
+        if (index == arr.length) {
+          // Stop consition - array is either empty or index reached array's end
+          return 0;
+        } else if (typeof arr[index] == "number") {
+          // curret slot occupied with a number
+          return arr[index++] + calcArray(arr, index); // sum slot's value with the next one
+        } else {
+          // current slot occupied with an array
+          return calcArray(arr[index++]) + calcArray(arr, index); // sum slot's array with the next one
+        }
+      }
+    </script>
+  </body>
+</html>
