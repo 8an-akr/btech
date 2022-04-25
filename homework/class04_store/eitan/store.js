@@ -1,10 +1,3 @@
-let items = [
-  createItem(0, "milk", 8.5, 10),
-  createItem(1, "chocolate", 1.5, 10),
-  createItem(2, "bamba", 10, 10),
-  createItem(3, "bisli", 5, 10),
-];
-
 const itemsUl = document.getElementById("items");
 const cartUl = document.getElementById("cart");
 const price = document.getElementById("payment");
@@ -18,6 +11,13 @@ function createItem(barcod, name, price, quantity, amount = 0) {
     quantity,
   };
 }
+
+let items = [
+  createItem(0, "milk", 8.5, 10),
+  createItem(1, "chocolate", 1.5, 10),
+  createItem(2, "bamba", 10, 10),
+  createItem(3, "bisli", 5, 10),
+];
 
 function createItemList(arr) {
   itemsUl.innerHTML = "";
