@@ -1,32 +1,41 @@
 let items = [
-  createItem(0, "milk", 8.5),
-  createItem(1, "chocolate", 1.5),
-  createItem(2, "bamba", 10),
-  createItem(3, "bisli", 5),
+  createItem(0, "milk", 8.5, 10),
+  createItem(1, "chocolate", 1.5, 10),
+  createItem(2, "bamba", 10, 10),
+  createItem(3, "bisli", 5, 10),
 ];
 
 const itemsUl = document.getElementById("items");
 const cartUl = document.getElementById("cart");
 const price = document.getElementById("payment");
 
-function createItem(barcod, name, price, amount = 0) {
+function createItem(barcod, name, price, quantity, amount = 0) {
   return {
     barcod: barcod,
     name: name,
     price: price,
     amount: amount,
+    quantity,
   };
 }
 
 function createItemList(arr) {
+  itemsUl.innerHTML = "";
   arr.forEach((item) => {
     let itemRow = document.createElement("li");
-    itemRow.innerText = `${item.name} | ${item.price}$`;
+    itemRow.innerText = `${item.name} | ${item.price}$ | ${item.quantity} Items left`;
     itemRow.id = `${item.barcod}`;
-    itemRow.onclick = (e) => {
-      items[e.target.id].amount++;
-      createCartList(items);
-      createPriceAmount(items);
+    if (item.quantity <= 0) {
+      itemRow.className = "grey";
+    }
+    itemRow.onclick = () => {
+      if (item.quantity > 0) {
+        item.amount++;
+        item.quantity--;
+        createCartList(items);
+        createPriceAmount(items);
+        createItemList(items);
+      }
     };
     itemsUl.appendChild(itemRow);
   });
@@ -38,13 +47,15 @@ function createCartList(arr) {
     if (item.amount > 0) {
       let cartRow = document.createElement("li");
       cartRow.innerText = `${item.name} | ${item.amount}`;
-      cartRow.className = `${item.barcod}`;
-      cartRow.onclick = (e) => {
-        items[e.target.className].amount > 0
-          ? items[e.target.className].amount--
-          : 0;
+      cartRow.id = `${item.barcod}`;
+      cartRow.onclick = () => {
+        if (item.amount > 0) {
+          item.amount--;
+          item.quantity++;
+        }
         createCartList(items);
         createPriceAmount(items);
+        createItemList(items);
       };
       cartUl.appendChild(cartRow);
     }

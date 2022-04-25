@@ -7,3 +7,15 @@ html {
 li {
   cursor: pointer;
 }
+
+.container {
+  background-color: rgb(137, 54, 54);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grey {
+  color: grey;
+}
